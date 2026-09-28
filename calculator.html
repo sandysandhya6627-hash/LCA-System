@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCA Calculator</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">🌱 LCA System</div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="calculator.html">Calculator</a></li>
+            <li><a href="results.html">Results</a></li>
+            <li><a href="history.html">History</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<main class="calculator-container">
+
+    <section class="page-header">
+        <h1>🌱 LCA Calculator</h1>
+        <p>Enter product information to calculate its estimated environmental impact.</p>
+    </section>
+
+
+    <form id="lcaForm">
+
+        <!-- Product -->
+        <div class="form-section">
+            <h2>📦 Product Information</h2>
+
+            <label for="productName">Product Name</label>
+            <input
+                type="text"
+                id="productName"
+                placeholder="Example: Plastic Bottle"
+                required
+            >
+
+            <label for="quantity">Quantity</label>
+            <input
+                type="number"
+                id="quantity"
+                min="1"
+                placeholder="Example: 10"
+                required
+            >
+        </div>
+
+
+        <!-- Materials -->
+        <div class="form-section">
+            <h2>🏭 Materials</h2>
+
+            <label for="material">Material Type</label>
+
+            <select id="material" required>
+                <option value="">Select material</option>
+                <option value="plastic">Plastic</option>
+                <option value="aluminium">Aluminium</option>
+                <option value="steel">Steel</option>
+                <option value="glass">Glass</option>
+                <option value="paper">Paper</option>
+                <option value="wood">Wood</option>
+            </select>
+
+
+            <label for="materialAmount">
+                Material Amount (kg)
+            </label>
+
+            <input
+                type="number"
+                id="materialAmount"
+                min="0"
+                step="0.01"
+                placeholder="Example: 2"
+                required
+            >
+        </div>
+
+
+        <!-- Energy -->
+        <div class="form-section">
+            <h2>⚡ Energy</h2>
+
+            <label for="energy">
+                Energy Consumption (kWh)
+            </label>
+
+            <input
+                type="number"
+                id="energy"
+                min="0"
+                step="0.01"
+                placeholder="Example: 5"
+                required
+            >
+
+
+            <label for="energySource">
+                Energy Source
+            </label>
+
+            <select id="energySource" required>
+                <option value="">Select energy source</option>
+                <option value="grid">Electric Grid</option>
+                <option value="solar">Solar</option>
+                <option value="wind">Wind</option>
+                <option value="hydro">Hydro</option>
+            </select>
+        </div>
+
+
+        <!-- Transportation -->
+        <div class="form-section">
+            <h2>🚚 Transportation</h2>
+
+            <label for="distance">
+                Transportation Distance (km)
+            </label>
+
+            <input
+                type="number"
+                id="distance"
+                min="0"
+                step="0.01"
+                placeholder="Example: 100"
+                required
+            >
+
+
+            <label for="transport">
+                Transportation Method
+            </label>
+
+            <select id="transport" required>
+                <option value="">Select transport</option>
+                <option value="road">Road</option>
+                <option value="rail">Rail</option>
+                <option value="ship">Ship</option>
+                <option value="air">Air</option>
+            </select>
+        </div>
+
+
+        <!-- Water -->
+        <div class="form-section">
+            <h2>💧 Water</h2>
+
+            <label for="water">
+                Water Consumption (litres)
+            </label>
+
+            <input
+                type="number"
+                id="water"
+                min="0"
+                step="0.01"
+                placeholder="Example: 20"
+                required
+            >
+        </div>
+
+
+        <!-- Waste -->
+        <div class="form-section">
+            <h2>♻️ Waste</h2>
+
+            <label for="waste">
+                Waste Generated (kg)
+            </label>
+
+            <input
+                type="number"
+                id="waste"
+                min="0"
+                step="0.01"
+                placeholder="Example: 1"
+                required
+            >
+
+
+            <label for="wasteTreatment">
+                Waste Treatment
+            </label>
+
+            <select id="wasteTreatment" required>
+                <option value="">Select treatment</option>
+                <option value="recycle">Recycle</option>
+                <option value="reuse">Reuse</option>
+                <option value="landfill">Landfill</option>
+                <option value="incineration">Incineration</option>
+            </select>
+        </div>
+
+
+        <!-- Buttons -->
+        <div class="form-buttons">
+
+            <button
+                type="submit"
+                id="calculateBtn"
+            >
+                🌱 Calculate Environmental Impact
+            </button>
+
+
+            <button
+                type="reset"
+                id="resetBtn"
+            >
+                Reset
+            </button>
+
+        </div>
+
+    </form>
+
+</main>
+
+
+<footer>
+    <p>© 2026 LCA System | Life Cycle Assessment Project</p>
+</footer>
+
+
+<!-- =====================================================
+     CALCULATION SCRIPT
+     ===================================================== -->
+
+<script>
+
+document.getElementById("lcaForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    console.log("Calculate button clicked");
+
+
+    // Get values
+    const productName =
+        document.getElementById("productName").value.trim();
+
+    const quantity =
+        Number(document.getElementById("quantity").value);
+
+    const material =
+        document.getElementById("material").value;
+
+    const materialAmount =
+        Number(document.getElementById("materialAmount").value);
+
+    const energy =
+        Number(document.getElementById("energy").value);
+
+    const energySource =
+        document.getElementById("energySource").value;
+
+    const distance =
+        Number(document.getElementById("distance").value);
+
+    const transport =
+        document.getElementById("transport").value;
+
+    const water =
+        Number(document.getElementById("water").value);
+
+    const waste =
+        Number(document.getElementById("waste").value);
+
+    const wasteTreatment =
+        document.getElementById("wasteTreatment").value;
+
+
+    // Validate
+    if (
+        !productName ||
+        !quantity ||
+        !material ||
+        !materialAmount ||
+        !energySource ||
+        !transport ||
+        !wasteTreatment
+    ) {
+
+        alert("Please fill in all required fields.");
+
+        return;
+    }
+
+
+    // Impact factors
+    const materialFactors = {
+        plastic: 3.0,
+        aluminium: 8.5,
+        steel: 2.0,
+        glass: 1.2,
+        paper: 1.0,
+        wood: 0.5
+    };
+
+
+    const energyFactors = {
+        grid: 0.7,
+        solar: 0.05,
+        wind: 0.03,
+        hydro: 0.04
+    };
+
+
+    const transportFactors = {
+        road: 0.00012,
+        rail: 0.00004,
+        ship: 0.00003,
+        air: 0.00060
+    };
+
+
+    const wasteFactors = {
+        recycle: 0.2,
+        reuse: 0.1,
+        landfill: 1.5,
+        incineration: 1.2
+    };
+
+
+    // Calculate individual impacts
+    const materialImpact =
+        materialAmount * materialFactors[material];
+
+    const energyImpact =
+        energy * energyFactors[energySource];
+
+    const transportImpact =
+        distance * transportFactors[transport];
+
+    const waterImpact =
+        water * 0.0005;
+
+    const wasteImpact =
+        waste * wasteFactors[wasteTreatment];
+
+
+    // Total
+    const totalImpact =
+        materialImpact +
+        energyImpact +
+        transportImpact +
+        waterImpact +
+        wasteImpact;
+
+
+    // Environmental score
+    let environmentalScore =
+        100 - (totalImpact * 2);
+
+    environmentalScore =
+        Math.max(
+            0,
+            Math.min(100, environmentalScore)
+        );
+
+
+    // Category
+    let category;
+
+    if (totalImpact < 10) {
+
+        category = "Low Impact";
+
+    } else if (totalImpact < 25) {
+
+        category = "Moderate Impact";
+
+    } else if (totalImpact < 50) {
+
+        category = "High Impact";
+
+    } else {
+
+        category = "Very High Impact";
+    }
+
+
+    // Create result object
+    const result = {
+
+        productName: productName,
+
+        quantity: quantity,
+
+        material: material,
+
+        materialAmount: materialAmount,
+
+        energy: energy,
+
+        energySource: energySource,
+
+        distance: distance,
+
+        transport: transport,
+
+        water: water,
+
+        waste: waste,
+
+        wasteTreatment: wasteTreatment,
+
+        materialImpact: materialImpact,
+
+        energyImpact: energyImpact,
+
+        transportImpact: transportImpact,
+
+        waterImpact: waterImpact,
+
+        wasteImpact: wasteImpact,
+
+        totalImpact: totalImpact,
+
+        environmentalScore: environmentalScore,
+
+        category: category,
+
+        date: new Date().toLocaleString()
+
+    };
+
+
+    // Save latest result
+    localStorage.setItem(
+        "lcaLatestResult",
+        JSON.stringify(result)
+    );
+
+
+    // Save history
+    let history =
+        JSON.parse(
+            localStorage.getItem("lcaHistory")
+        ) || [];
+
+    history.push(result);
+
+    localStorage.setItem(
+        "lcaHistory",
+        JSON.stringify(history)
+    );
+
+
+    console.log("LCA Result:", result);
+
+
+    // Success message
+    alert(
+        "🌱 Calculation completed successfully!"
+    );
+
+
+    // Open Results page
+    window.location.href = "results.html";
+
+});
+
+</script>
+
+</body>
+</html>

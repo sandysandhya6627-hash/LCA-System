@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LCA Results | LCA System</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                🌱 LCA System
+            </div>
+
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+
+                <li>
+                    <a href="calculator.html">Calculator</a>
+                </li>
+
+                <li>
+                    <a href="results.html" class="active">Results</a>
+                </li>
+
+                <li>
+                    <a href="history.html">History</a>
+                </li>
+
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="results-container">
+
+        <!-- Page Header -->
+
+        <section class="page-header">
+
+            <h1>
+                🌍 Environmental Impact Results
+            </h1>
+
+            <p>
+                Your Life Cycle Assessment results are shown below.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             NO RESULT MESSAGE
+        ========================== -->
+
+        <div
+            id="noResult"
+            class="result-card"
+        >
+
+            <h2>
+                No Results Available
+            </h2>
+
+            <p>
+                Please complete an LCA calculation first.
+            </p>
+
+            <br>
+
+            <a
+                href="calculator.html"
+                class="btn"
+            >
+                🌱 Start Calculation
+            </a>
+
+        </div>
+
+
+        <!-- =========================
+             RESULTS SECTION
+        ========================== -->
+
+        <div
+            id="resultsSection"
+            style="display: none;"
+        >
+
+
+            <!-- =========================
+                 PRODUCT INFORMATION
+            ========================== -->
+
+            <div class="result-card">
+
+                <h2>
+                    📦 Product Information
+                </h2>
+
+                <div class="result-grid">
+
+
+                    <div>
+
+                        <strong>
+                            Product Name
+                        </strong>
+
+                        <p id="productName">
+                            -
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Quantity
+                        </strong>
+
+                        <p id="quantity">
+                            -
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Assessment Date
+                        </strong>
+
+                        <p id="date">
+                            -
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 OVERALL IMPACT
+            ========================== -->
+
+            <div class="result-card">
+
+                <h2>
+                    🌱 Overall Environmental Impact
+                </h2>
+
+
+                <div class="impact-box">
+
+                    <h3>
+                        Total Environmental Impact
+                    </h3>
+
+                    <div class="impact-value">
+
+                        <span id="totalImpact">
+                            0
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Estimated impact value
+                    </p>
+
+                </div>
+
+
+                <div class="score-box">
+
+                    <h3>
+                        Environmental Score
+                    </h3>
+
+                    <div class="score-value">
+
+                        <span id="environmentalScore">
+                            0
+                        </span>
+
+                        /100
+
+                    </div>
+
+                </div>
+
+
+                <div class="category-box">
+
+                    <h3>
+                        Impact Category
+                    </h3>
+
+                    <p id="category">
+                        -
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 IMPACT BREAKDOWN
+            ========================== -->
+
+            <div class="result-card">
+
+                <h2>
+                    📊 Impact Breakdown
+                </h2>
+
+
+                <div class="result-grid">
+
+
+                    <!-- Materials -->
+
+                    <div class="impact-item">
+
+                        <h3>
+                            🏭 Materials
+                        </h3>
+
+                        <p id="materialImpact">
+                            0
+                        </p>
+
+                    </div>
+
+
+                    <!-- Energy -->
+
+                    <div class="impact-item">
+
+                        <h3>
+                            ⚡ Energy
+                        </h3>
+
+                        <p id="energyImpact">
+                            0
+                        </p>
+
+                    </div>
+
+
+                    <!-- Transportation -->
+
+                    <div class="impact-item">
+
+                        <h3>
+                            🚚 Transportation
+                        </h3>
+
+                        <p id="transportImpact">
+                            0
+                        </p>
+
+                    </div>
+
+
+                    <!-- Water -->
+
+                    <div class="impact-item">
+
+                        <h3>
+                            💧 Water
+                        </h3>
+
+                        <p id="waterImpact">
+                            0
+                        </p>
+
+                    </div>
+
+
+                    <!-- Waste -->
+
+                    <div class="impact-item">
+
+                        <h3>
+                            ♻️ Waste
+                        </h3>
+
+                        <p id="wasteImpact">
+                            0
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 ASSESSMENT DETAILS
+            ========================== -->
+
+            <div class="result-card">
+
+                <h2>
+                    📋 Assessment Details
+                </h2>
+
+
+                <div class="details">
+
+
+                    <p>
+
+                        <strong>
+                            Material:
+                        </strong>
+
+                        <span id="material">
+                            -
+                        </span>
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Energy Source:
+                        </strong>
+
+                        <span id="energySource">
+                            -
+                        </span>
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Transportation:
+                        </strong>
+
+                        <span id="transport">
+                            -
+                        </span>
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Waste Treatment:
+                        </strong>
+
+                        <span id="wasteTreatment">
+                            -
+                        </span>
+
+                    </p>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 ACTION BUTTONS
+            ========================== -->
+
+            <div class="result-actions">
+
+
+                <a
+                    href="calculator.html"
+                    class="btn"
+                >
+                    🔄 New Assessment
+                </a>
+
+
+                <a
+                    href="history.html"
+                    class="btn"
+                >
+                    📜 View History
+                </a>
+
+
+                <button
+                    onclick="window.print()"
+                    class="btn"
+                >
+                    🖨️ Print Results
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+            © 2026 LCA System |
+            Life Cycle Assessment Project
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         RESULTS JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                /*
+                 * Get saved calculation
+                 */
+
+                const savedResult =
+                    localStorage.getItem(
+                        "lcaLatestResult"
+                    );
+
+
+                /*
+                 * If there is no calculation
+                 */
+
+                if (!savedResult) {
+
+                    document.getElementById(
+                        "noResult"
+                    ).style.display = "block";
+
+
+                    document.getElementById(
+                        "resultsSection"
+                    ).style.display = "none";
+
+
+                    return;
+
+                }
+
+
+                /*
+                 * Read saved result
+                 */
+
+                try {
+
+                    const result =
+                        JSON.parse(savedResult);
+
+
+                    /*
+                     * Hide "No Results"
+                     */
+
+                    document.getElementById(
+                        "noResult"
+                    ).style.display = "none";
+
+
+                    /*
+                     * Show Results
+                     */
+
+                    document.getElementById(
+                        "resultsSection"
+                    ).style.display = "block";
+
+
+                    /*
+                     * Product Information
+                     */
+
+                    document.getElementById(
+                        "productName"
+                    ).textContent =
+                        result.productName || "-";
+
+
+                    document.getElementById(
+                        "quantity"
+                    ).textContent =
+                        result.quantity || "-";
+
+
+                    document.getElementById(
+                        "date"
+                    ).textContent =
+                        result.date ||
+                        new Date().toLocaleString();
+
+
+                    /*
+                     * Overall Results
+                     */
+
+                    document.getElementById(
+                        "totalImpact"
+                    ).textContent =
+                        Number(
+                            result.totalImpact || 0
+                        ).toFixed(2);
+
+
+                    document.getElementById(
+                        "environmentalScore"
+                    ).textContent =
+                        Number(
+                            result.environmentalScore || 0
+                        ).toFixed(1);
+
+
+                    document.getElementById(
+                        "category"
+                    ).textContent =
+                        result.category ||
+                        "Not Available";
+
+
+                    /*
+                     * Impact Breakdown
+                     */
+
+                    document.getElementById(
+                        "materialImpact"
+                    ).textContent =
+                        Number(
+                            result.materialImpact || 0
+                        ).toFixed(2);
+
+
+                    document.getElementById(
+                        "energyImpact"
+                    ).textContent =
+                        Number(
+                            result.energyImpact || 0
+                        ).toFixed(2);
+
+
+                    document.getElementById(
+                        "transportImpact"
+                    ).textContent =
+                        Number(
+                            result.transportImpact || 0
+                        ).toFixed(2);
+
+
+                    document.getElementById(
+                        "waterImpact"
+                    ).textContent =
+                        Number(
+                            result.waterImpact || 0
+                        ).toFixed(2);
+
+
+                    document.getElementById(
+                        "wasteImpact"
+                    ).textContent =
+                        Number(
+                            result.wasteImpact || 0
+                        ).toFixed(2);
+
+
+                    /*
+                     * Assessment Details
+                     */
+
+                    document.getElementById(
+                        "material"
+                    ).textContent =
+                        formatMaterial(
+                            result.material
+                        );
+
+
+                    document.getElementById(
+                        "energySource"
+                    ).textContent =
+                        formatEnergySource(
+                            result.energySource
+                        );
+
+
+                    document.getElementById(
+                        "transport"
+                    ).textContent =
+                        formatTransport(
+                            result.transport
+                        );
+
+
+                    document.getElementById(
+                        "wasteTreatment"
+                    ).textContent =
+                        formatWasteTreatment(
+                            result.wasteTreatment
+                        );
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Error reading LCA result:",
+                        error
+                    );
+
+
+                    document.getElementById(
+                        "noResult"
+                    ).style.display = "block";
+
+
+                    document.getElementById(
+                        "resultsSection"
+                    ).style.display = "none";
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           FORMAT MATERIAL
+        ========================== */
+
+        function formatMaterial(material) {
+
+            const names = {
+
+                plastic: "Plastic",
+
+                aluminium: "Aluminium",
+
+                steel: "Steel",
+
+                glass: "Glass",
+
+                paper: "Paper",
+
+                wood: "Wood"
+
+            };
+
+
+            return names[material] ||
+                   material ||
+                   "-";
+
+        }
+
+
+        /* =========================
+           FORMAT ENERGY
+        ========================== */
+
+        function formatEnergySource(source) {
+
+            const names = {
+
+                grid: "Electric Grid",
+
+                solar: "Solar Energy",
+
+                wind: "Wind Energy",
+
+                hydro: "Hydropower"
+
+            };
+
+
+            return names[source] ||
+                   source ||
+                   "-";
+
+        }
+
+
+        /* =========================
+           FORMAT TRANSPORT
+        ========================== */
+
+        function formatTransport(transport) {
+
+            const names = {
+
+                road: "Road",
+
+                rail: "Rail",
+
+                ship: "Ship",
+
+                air: "Air"
+
+            };
+
+
+            return names[transport] ||
+                   transport ||
+                   "-";
+
+        }
+
+
+        /* =========================
+           FORMAT WASTE
+        ========================== */
+
+        function formatWasteTreatment(treatment) {
+
+            const names = {
+
+                recycle: "Recycling",
+
+                reuse: "Reuse",
+
+                landfill: "Landfill",
+
+                incineration: "Incineration"
+
+            };
+
+
+            return names[treatment] ||
+                   treatment ||
+                   "-";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
